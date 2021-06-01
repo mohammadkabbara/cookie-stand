@@ -311,69 +311,178 @@
 
 
 
-let hours = ['6 am', '7 am', '8am', '9am', '10am', '11am', '12 pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-function random(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-}
-let shops = [];
 
-function Shop(name, min, max, avg) {
-    this.name = name;
+
+let parent = document.getElementById('parent');
+function getRandomNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+let hours = [`6am`, `7am`, `8am`, '9am', `10am`, `11am`, `12pm`, `1pm`, `2pm`, `3pm`, `4pm`, `5pm`, `6pm`, `7pm`];
+let shops=[];
+
+
+function Shop(shop, min, max, avg) {
     this.min = min;
     this.max = max;
     this.avg = avg;
-    this.randomNumber = [];
-
-    this.countArr = [];
+    this.shopName = shop;
+    this.customersEachHour = [];
+    this.countArrPerHour = [];
     this.total = 0;
+    console.log(this);
     shops.push(this);
+}
 
+let megaTotal=0;
 
+Shop.prototype.getCustomersEachHour = function () {
+    for (let i = 0; i < hours.length; i++) {
+        this.customersEachHour.push(getRandomNum(this.min, this.max));
+
+    }
+}
+
+Shop.prototype.getCountArrPerHour= function () {
+    for (let i = 0; i < hours.length; i++) {
+        this.countArrPerHour.push(Math.floor(this.customersEachHour[i] * this.avg));
+
+        this.total+=this.countArrPerHour[i];
+        megaTotal+=this.countArrPerHour[i];
+
+    }
+    
 }
 
 
-Shop.prototype.gitRandomNumber = function () {
+let tableElement = document.createElement('table');
+
+
+parent.appendChild(tableElement);
+
+
+
+
+function headHoursRow() {
+
+ 
+    let trFirstRow = document.createElement('tr');
+
+
+    tableElement.appendChild(trFirstRow);
+
+ 
+    let thName = document.createElement('th');
+
+    trFirstRow.appendChild(thName);
+
+
+    thName.textContent = 'Name';
+
     for (let i = 0; i < hours.length; i++) {
-        this.randomNumber.push(random(this.min, this.max));
-        console.log(this.randomNumber);
+     
+        let thHourRow = document.createElement('th');
 
+        
+        trFirstRow.appendChild(thHourRow);
+
+      
+        thHourRow.textContent = hours[i];
     }
-};
-
-Shop.prototype.getcount = function () {
-    for (let i = 0; i < hours.length; i++) {
-        this.countArr.push(Math.floor(this.randomNumber[i] * this.avg));
-        this.total += this.countArr[i];
-
-        // console.log(this.countArr);
-
-    }
-
-};
-
-
-
-function msgHeader() {
-    let parent = document.getElementById('parent');
-    let table = document.createElement('table');
-    parent.appendChild(table);
-    let headingRow = document.createElement('tr');
-    table.appendChild(headingRow);
-    let thElement1 = document.createElement('th');
-    headingRow.appendChild(thElement1);
-    thElement1.textContent = "Shops Name";
-    for (let i = 0; i < hours.length; i++) {
-        let thElement = document.createElement('th');
-        headingRow.appendChild(thElement);
-        thElement.textContent = hours[i];
-
-    }
-    let thElement2 = document.createElement('th');
-    headingRow.appendChild(thElement2);
-    thElement2.textContent = 'Total';
+ 
+    let thDailyshopTotal = document.createElement('th');
+    
+    trFirstRow.appendChild(thDailyshopTotal);
+   
+    thDailyshopTotal.textContent = 'DailyshopTotal';
 }
 
-msgHeader();
+
+Shop.prototype.render=function(){
+
+ 
+    let dataRow=document.createElement('tr');
+
+   
+    tableElement.appendChild(dataRow);
+
+  
+    let nameTd=document.createElement('td');
+
+   
+    dataRow.appendChild(nameTd);
+
+   
+    nameTd.textContent=this.shopName;
+
+
+    for (let i = 0; i < hours.length; i++) {
+        
+        let cookiesTd=document.createElement('td');
+
+        
+        dataRow.appendChild(cookiesTd);
+
+       
+        cookiesTd.textContent=this.countArrPerHour[i];
+
+       
+        
+    }
+
+    let totalTd=document.createElement('td');
+
+   
+    dataRow.appendChild(totalTd);
+
+    
+    totalTd.textContent=this.total;
+
+}
+
+function makingFooterRow() {
+ 
+    let footerRow=document.createElement('tr');
+
+    
+    tableElement.appendChild(footerRow);
+
+  let firstTh=document.createElement('th');
+
+    footerRow.appendChild(firstTh);
+  
+    firstTh.textContent='Totals';
+
+    for (let i = 0; i < hours.length; i++) {
+       
+       let totalForEachHour=0;
+       
+        for (let j = 0; j < shops.length; j++) {
+            
+
+            totalForEachHour+=shops[j].countArrPerHour[i];           
+        }
+        console.log(totalForEachHour);
+       
+        let dataTh=document.createElement('th');
+
+       
+        footerRow.appendChild(dataTh);
+
+        dataTh.textContent=totalForEachHour;
+        
+    }
+
+    console.log(megaTotal);
+    
+    let finalTh=document.createElement('th');
+
+    
+    footerRow.appendChild(finalTh);
+
+    
+    finalTh.textContent= megaTotal;
+
+}
 
 let seattle = new Shop('Seattle', 23, 65, 6.3);
 let tokyo = new Shop('Tokyo', 3, 24, 1.2);
@@ -381,56 +490,17 @@ let dubai = new Shop('Dubai', 11, 38, 3.7);
 let paris = new Shop('Paris', 20, 38, 2.3);
 let lima = new Shop('Lima', 2, 16, 4.6);
 
+console.log(shops);
 
 
-
-
-
-
-
-Shop.prototype.render = function () {
-    let parent = document.getElementById('parent');
-    let table = document.createElement('table');
-    parent.appendChild(table);
-    let dataRow = document.createElement('tr');
-    table.appendChild(dataRow);
-    let td = document.createElement('td');
-    dataRow.appendChild(td);
-    td.textContent = this.name;
-    for (let i = 0; i < hours.length; i++) {
-        let td1 = document.createElement('td');
-        dataRow.appendChild(td1);
-        td1.textContent = this.countArr[i];
-
-
-    }
-    for (let i =0 ; i < shops.length ; i++){
-        let totalTd = document.createElement('td');
-    dataRow.appendChild(totalTd);
-    totalTd.textContent = this.total
-
-}
-    }
-
-    
-
+headHoursRow();
 
 for (let i = 0; i < shops.length; i++) {
+    shops[i].getCustomersEachHour();
+    shops[i].getCountArrPerHour();
     shops[i].render();
-    shops[i].getcount();
-    shops[i].gitRandomNumber();
-
 }
-
-seattle.getcount();
-console.log(seattle);
-
-
-
-
-
-
-
+makingFooterRow();
 
 
 
