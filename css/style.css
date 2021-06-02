@@ -1,4 +1,93 @@
-table,tr,th, td{
-    border: 1px solid black;
-    border-collapse: collapse;
+body {
+    background-color: salmon;
+}
+h1 {
+    float: right;
+    margin-top: 40px;
+    margin-right: 60px;
+    font-size: 50px;
+    font-weight: bolder;
+    color: teal;
+}
+main {
+    width: 1000px;
+    margin: 0px auto;
+}
+nav {
+    height: 850px;
+}
+nav li {
+    float: left;
+    margin-top: 40px;
+    margin-left: 30px;
+    color: rgb(187, 187, 187);
+}
+header {
+    height: 200px;
+    background-color: rgb(25, 29, 29);
+    background-image: url(https://github.com/LTUC/amman-201d26/blob/main/class-08/lab-b/assets/salmon.png?raw=true);
+    background-size: unset;
+    margin: 20px 20px 40px;
+    background-repeat: no-repeat;
+}
+p {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bolder;
+    font-family: fantasy;
+    color: steelblue;
+    margin-bottom: 20px;
+}
+.img1 {
+    float: left;
+    margin-right: 20px;
+}
+.img2 {
+    float: right;
+    margin-left: 20px;
+}
+#para {
+    float: left;
+    color: red;
+}
+#para2 {
+    float: left;
+    color: rgb(60, 59, 65);
+    font-family: cursive;
+    font-size: 25px;
+}
+#para3 {
+    float: left;
+    color: rgb(60, 59, 65);
+}
+#para4 {
+    float: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(25, 29, 29);
+    margin: 20px;
+    padding: 20px;
+}
+body footer {
+    clear: left;
+    height:90px;
+    background: rgb(15, 15, 15);
+}
+#para5 {
+    float: left;
+    font-size: 25px;
+    font-family: cursive;
+    color: rosybrown;
+}
+#para6 {
+    float: right;
+    font-size:25px;
+    font-family: cursive;
+    color: rosybrown;
+}
+#final-para {
+    text-align: center;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 70px;
+    color: wheat;
+   
 }
