@@ -439,6 +439,35 @@ Shop.prototype.render=function(){
 
 }
 
+
+var newForm= document.getElementById('newShop');
+newForm.addEventListener('submit',function(event){
+    event.preventDefault();
+    //console.log(event);
+    var name = event.target.name.value;
+    console.log(name);  
+    var max=parseInt(event.target.max.value);
+    var min=parseInt(event.target.min.value);
+    var avg =parseFloat(event.target.avg.value);
+    //console.log(min);
+    if(min<max){
+        
+        tableElement.removeChild(tableElement.lastChild);
+var newShop= new Shop (name, max, min, avg);
+newShop.getCustomersEachHour();
+newShop.getCountArrPerHour();
+newShop.render();
+makingFooterRow();
+
+}
+
+else{
+    alert('maximum number must be bigeer than minimum pls');
+}
+
+})
+
+
 function makingFooterRow() {
  
     let footerRow=document.createElement('tr');

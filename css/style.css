@@ -1,13 +1,15 @@
-body {
-    background-color: salmon;
+ body {
+    /* background-color: salmon; */
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRevG2JeZlKUFrok-kRWqsAcEl4APnFL66pjg&usqp=CAU);
+    background-size: cover;
 }
 h1 {
-    float: right;
+    text-align: center;
     margin-top: 40px;
     margin-right: 60px;
-    font-size: 50px;
+    font-size: 70px;
     font-weight: bolder;
-    color: teal;
+    color: #1f3333;
 }
 main {
     width: 1000px;
@@ -24,11 +26,12 @@ nav li {
 }
 header {
     height: 200px;
-    background-color: rgb(25, 29, 29);
-    background-image: url(https://github.com/LTUC/amman-201d26/blob/main/class-08/lab-b/assets/salmon.png?raw=true);
+    background-color: rgb(73 155 220);
+    /* background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxQbHokxgIJlYuNehMN7raL3WGmxeqO8MRBw&usqp=CAU); */
     background-size: unset;
     margin: 20px 20px 40px;
-    background-repeat: no-repeat;
+    background-size: cover;
+    
 }
 p {
     text-align: center;
@@ -90,4 +93,27 @@ body footer {
     font-size: 70px;
     color: wheat;
    
+} 
+fieldset{
+    background-color: teal;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhANZiYJf_5Py5zoZ4LTeL0oDiqUIHkc92BA&usqp=CAU);
+}
+ label{
+    font-size: 32px;
+    color: rgb(18 0 31 / 89%);
+    font-family:fantasy;
+    font-weight: bolder;
+}
+input{
+    margin:10px;
+}
+
+
+table,tr,th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+#parent{
+    margin-left:200px;
+    margin-bottom: 100px;
 }
